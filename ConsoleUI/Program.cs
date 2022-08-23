@@ -8,6 +8,8 @@ namespace ConsoleUI
 {
     class Program
     {
+        public static object HasTrunk { get; private set; }
+
         static void Main(string[] args)
         {
             /*
@@ -32,17 +34,40 @@ namespace ConsoleUI
             */
 
             // Create a list of Vehicle called vehicles
+            var vehicles = new List<Vehicle>();
 
             /*
              * Create 4 instances: 1 Car, 1 Motorcycle, and then 2 instances of type Vehicle (use explicit typing) but use constuctors from derived classes
              * - new it up as one of each derived class
              * Set the properties with object initializer syntax
              */
+            Car challenger = new Car() { HasTrunk = true, Make = "Dodge", Model = "Challenger", Year = 2015 };
+            Motorcycle motorcycle = new Motorcycle() { HasSideCart = true, Make = "Harley Davidson", Model = "XXX", Year = 2000 };
+            Vehicle suv = new Car() { HasTrunk = true, Make = "Jeep", Model = "Wrangler", Year = 2011 };
+            Vehicle sport = new Car() { HasTrunk = true, Make = "Porshe", Model = "Boxster", Year = 2020 };
+
+
 
             /*
              * Add the 4 vehicles to the list
              * Using a foreach loop iterate over each of the properties
              */
+
+            vehicles.Add(challenger);
+            vehicles.Add(motorcycle);
+            vehicles.Add(suv);
+            vehicles.Add(sport);
+
+            foreach (var item in vehicles)
+            {
+                Console.WriteLine(item.Year);
+                Console.WriteLine(item.Make);
+                Console.WriteLine(item.Model);
+                item.DriveVirtual();
+                Console.WriteLine();
+            }
+
+            
 
             // Call each of the drive methods for one car and one motorcycle
 
